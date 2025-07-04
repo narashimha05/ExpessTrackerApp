@@ -4,6 +4,9 @@ import {sql} from './config/db.js';
 import { limiter } from './middleware/rateLimiter.js';
 import transactionsRoute from './routes/transactionsRoute.js';
 import { initDB } from './config/db.js';
+import job from './config/cron.js';
+
+if(process.env.NODE_ENV === 'production') job.start();
 
 const app = express();
 const port = process.env.PORT || 5001;
